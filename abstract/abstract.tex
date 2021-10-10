@@ -1,0 +1,46 @@
+\documentclass[a4paper,10.5pt]{jsarticle}
+\usepackage[dvipdfmx,hidelinks]{hyperref}
+\usepackage{pxjahyper}
+\usepackage{titlesec}
+\setlength{\topmargin}{0pt}
+\titleformat*{\section}{\large\bfseries}
+\titleformat*{\subsection}{\normalsize\bfseries}
+\pagestyle{empty}
+
+\title{Julia言語によるLangevin方程式の数値計算}
+\author{横浜市立大学大学院\\
+        生命ナノシステム科学研究科~前期博士課程~物質システム科学専攻\\
+        大野周平}
+\date{2021年10月23日(土) @ 第8回 ぶつりがく徒のつどい}
+
+\begin{document}
+  \maketitle
+
+  \section*{概要}
+    本講演ではLangevin方程式の歴史背景と数値解法について概説する.
+
+  \subsection*{第１部}
+    \href{https://doi.org/10.1080/14786442808674769}{Brown(1828)},
+    \href{https://doi.org/10.1002/andp.19053220806}{Einstein(1905)},
+    \href{https://gallica.bnf.fr/ark:/12148/bpt6k3100t/f969.item}{Perrin(1908)},
+    \href{https://fr.wikisource.org/wiki/Sur_la_th%C3%A9orie_du_mouvement_brownien}{Langevin(1908)}の一連の研究について簡単に紹介する.\\
+    Einsteinは拡散方程式, LangevinはLangevin方程式を出発点として等価な結果を導いたが, 本来, これらの方程式の与える平均二乗変位は異なるものである. 則ち両者を等価たらしめる何らかの仮定が置かれている.
+
+  \subsection*{第２部}
+    確率過程の概念, Eular-Maruyama法による種々の確率微分方程式の数値解法について, \href{https://julialang.org/}{Julia言語}での実装例を交えて解説する. \href{https://julialang.org/}{Julia言語}の疑似乱数には\href{http://www.math.sci.hiroshima-u.ac.jp/m-mat/MT/SFMT/index-jp.html/#dSFMT}{dSFMT}が採用されており, 初めから良質な乱数を用いた計算が可能である. 得られた数値解はPlots.jlを用いて可視化し, Fokker-Planck方程式の解析解と比較する.
+
+  \subsection*{第３部}
+    第2部の内容を元に, Langevin方程式の数値計算を行う. \href{https://www.iwanami.co.jp/book/b258377.html}{Kitahara(1997)}から平均二乗変位の式を援用し, 計算結果の評価を行う. 最後に分子動力学法による拡散係数の決定に関する問題について簡単に紹介した後, 時間に余裕があれば拡散量子モンテカルロ法について紹介する.
+
+  \section*{主な参考文献}
+    \begin{enumerate}
+      \item {\href{https://www.kyoritsu-pub.co.jp/bookdetail/9784320032361}{米沢富美子『物理学 One Point - 27 ブラウン運動』(共立出版, 1986)}}
+      \item {\href{https://www.chikumashobo.co.jp/product/9784480094032/}{ジョン・スタチェル編, 青木薫訳『アインシュタイン論文選「奇跡の年」の5論文』(筑摩書房, 2011)}} % 第2章
+      \item {\href{https://www.iwanami.co.jp/book/b427307.html}{池田信行『偶然の輝き ブラウン運動を巡る2000年』(岩波書店, 2018)}} % 第3章, 第4章, 第5章
+      \item{\href{https://www.maruzen-publishing.co.jp/item/?book_no=294581}{L.カラザス, S.E.シュレーブ著, 渡邉壽夫訳『ブラウン運動と確率積分』(丸善出版, 2012)}} % 第5章
+      \item{\href{https://www.iwanami.co.jp/book/b266718.html}{堀淳一『ランジュバン方程式』(岩波書店, 2015)}} % 第1章, 第2章, 第3章
+      \item{\href{https://www.kyoritsu-pub.co.jp/bookdetail/9784320017535}{三井斌友, 小藤俊幸, 斉藤善弘『微分方程式による計算科学入門』(共立出版, 2004)}} % 第4章
+      \item{\href{https://www.iwanami.co.jp/book/b258377.html}{北原和夫『岩波基礎物理シリーズ 8 非平衡系の統計力学』(岩波書店, 1997)}} % 第4章
+    \end{enumerate}
+
+\end{document}
