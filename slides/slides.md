@@ -126,7 +126,7 @@ plot!()
 
 Plots.jlの入門は[こちらのノート](https://gist.github.com/ohno/78d55921c3f88b50a7fb1835be132bcd)を参照.
 
-![](../document/sample.svg)
+![](../note/sample.svg)
 
 <style scoped>
   code {
@@ -151,7 +151,7 @@ img {
 |方程式|$\frac{\partial P(\pmb{x},t)}{\partial t}=D\nabla^2 P(\pmb{x},t)$|$m\frac{\mathrm{d}\pmb{V}(t)}{\mathrm{d}t} = -\gamma \pmb{V}(t) + \pmb{R}(t)$|
 |MSD|$\langle\|\pmb{X}(t)\|^2\rangle = 2nDt$|$\langle\|\pmb{X}(t)\|^2\rangle = 2n\frac{D_u m}{\gamma^3} \left(\frac{\gamma}{m} t+e^{-\frac{\gamma}{m} t}-1 \right)$|
 
-![](../document/DiffusionVsLangevin.svg)
+![](../note/DiffusionVsLangevin.svg)
 
 ### 初めてこのグラフを見た人の反応
 
@@ -218,7 +218,7 @@ img {
 
 # Einsteinまでの80年間
 
-![](../document/fractal.svg)
+![](../note/fractal.svg)
 
 - Brown運動の軌道は[自己相似性](https://en.wikipedia.org/wiki/Wiener_process#/media/File:Wiener_process_animated.gif)を持つ
 - [Brown運動のフラクタル次元は2](http://umdb.um.u-tokyo.ac.jp/DKankoub/Publish_db/2006jiku_design/sano.html)である
@@ -276,7 +276,7 @@ $$
 
 [Becker(2001)](https://doi.org/10.1088/0034-4885/64/12/206)によると, 当時としてはおかしくないことがわかる. Perrinが[1926年にノーベル物理学賞を授賞](https://www.nobelprize.org/prizes/physics/1926/ceremony-speech/)する頃までは分子運動による測定方法が主流だった<br>→ 拡散係数を過小評価<br>→ アボガドロ定数を過大評価？
 
-![](../document/perrin.svg)
+![](../note/perrin.svg)
 
 
 <style scoped>
@@ -344,8 +344,8 @@ $i=3$のとき, $X_i=+3,+1,0,-1,-3$
 つまり, $X_i$の確率分布が時間$i$に依存する.
 なお, $R_i$の確率分布は時間に依らない.
 
-- ![](../document/randomwalk.svg)
-- ![](../document/randomwalks.png)
+- ![](../note/randomwalk.svg)
+- ![](../note/randomwalks.png)
 
 <style scoped>
   section{padding-right: 660px;}
@@ -379,8 +379,8 @@ $$
 $$
 
 
-- ![](../document/wiener_process.svg)
-- ![](../document/wiener_processes.png)
+- ![](../note/wiener_process.svg)
+- ![](../note/wiener_processes.png)
 
 <style scoped>
   section{padding-right: 660px;}
@@ -423,7 +423,7 @@ $$
 
 この$\Delta W_i$が今日の計算のカギ！
 
-![](../document/wiener_process_description.svg)
+![](../note/wiener_process_description.svg)
 
 <style scoped>
   section{padding-right: 660px;}
@@ -565,7 +565,7 @@ end
 |境界条件$P(\pm\infty,t)=0$のときの解|
 |$P(x,t) = \frac{1}{\sqrt{4\pi Dt}} \exp \left( -\frac{(x-x_0)^2}{4Dt} \right)$|
 
-![](../document/SDE_1.gif)
+![](../note/SDE_1.gif)
 
 <style scoped>
   section{
@@ -597,7 +597,7 @@ end
 |境界条件$P(\pm\infty,t)=0$のときの解|
 |$P(x,t) = \frac{1}{\sqrt{4\pi Dt}} \exp \left( -\frac{(x-x_0-ct)^2}{4Dt} \right)$|
 
-![](../document/SDE_2.gif)
+![](../note/SDE_2.gif)
 
 <style scoped>
   section{
@@ -629,7 +629,7 @@ end
 |境界条件$P(\pm\infty,t)=0$のときの解|
 |$P(x,t) = \sqrt{\frac{\gamma}{2\pi D(1-e^{-2\gamma t})}} \exp \left( -\frac{\gamma(x-x_0 e^{-\gamma t})^2}{2D(1-e^{-2\gamma t})} \right)$|
 
-![](../document/SDE_3.gif)
+![](../note/SDE_3.gif)
 
 <style scoped>
   section{
@@ -745,8 +745,8 @@ $$
 |MSD|
 |$\langle\|\boldsymbol{X}(t)\|^2\rangle = 2n\frac{D_u m}{\gamma'^3} \left(\frac{\gamma'}{m} t+e^{-\frac{\gamma'}{m} t}-1 \right)$|
 
-- ![](../document/MSD_nonequilibrium.gif)
-- ![](../document/MSD.gif)
+- ![](../note/MSD_nonequilibrium.gif)
+- ![](../note/MSD.gif)
 
 <style scoped>
   section{
@@ -790,7 +790,7 @@ $$
 
 が得られる. すなわち, どのような粒子であっても十分に長い時間間隔で観測すれば, 拡散係数$D_u/\gamma^2$の拡散方程式に従う. 拡散係数を過小評価することが自然である.
 
-![](../document/MSD.svg)
+![](../note/MSD.svg)
 
 <style scoped>
   section{
