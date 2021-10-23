@@ -1,0 +1,33 @@
+/* CSSの適用方法 */
+/* ファイル(F) > ユーザー設定 > 設定 (Ctrlと,同時押し) */
+/* Markdown › Marp: Themes */
+/* .slides//slides.css を追加 */
+/* ファイル(F) > フォルダを開く からリポジトリ(slidesを含むフォルダ)を開く */
+
+
+/* @theme butsudoi */
+@import 'default';
+
+p {
+  font-size: 26px;
+}
+
+a {
+  width: fit-content;
+  color: rgb(0,200,200);
+  background: linear-gradient(
+90deg, rgba(0,100,200,1) 0%, rgba(0,200,100,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section.title > h1{
+  background: linear-gradient(
+90deg, rgba(0,100,200,1) 0%, rgba(0,200,100,1) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+section.subtitle {
+  background: #F9FDFD;
+}
