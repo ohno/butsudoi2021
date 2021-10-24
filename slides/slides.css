@@ -8,8 +8,12 @@
 /* @theme butsudoi */
 @import 'default';
 
-p {
+p, table{
   font-size: 26px;
+}
+
+ul, ol {
+  font-size: 28px;
 }
 
 a {

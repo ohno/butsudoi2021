@@ -21,6 +21,11 @@ theme: butsudoi
 
 本講演ではLangevin方程式の歴史背景と数値解法について概説する.
 
+
+計算には[Julia言語](https://julialang.org/), 描写には[Plots.jl](http://docs.juliaplots.org/latest/)を用いた. 全てのソースコードは[講義ノート](https://ohno.github.io/butsudoi2021/note/note.html)にまとめてある.
+[講義ノート](https://ohno.github.io/butsudoi2021/note/note.html)は[IJulia.jl](https://github.com/JuliaLang/IJulia.jl)による[Jupyter Notebook](https://jupyter.org/)でまとめており, 計算や描写はノート上で行った.
+[このスライド](https://ohno.github.io/butsudoi2021/slides/slides.html)は[Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)を用いて作成した.
+
 ---
 
 # 資料
@@ -28,42 +33,6 @@ theme: butsudoi
 資料は全て https://github.com/ohno/butsudoi2021 にアップロードしてあります.
 
 質問・指摘等は https://github.com/ohno/butsudoi2021/discussions にお願いします.
-<!-- 
-スライドはVisual Studio Codeの拡張機能である[Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)を用いて作成した.
-
-グラフは[Julia言語](https://julialang.org/)のパッケージである[Plots.jl](http://docs.juliaplots.org/latest/)を用いて作成した. 計算および描写のためのソースコードは[IJulia.jl](https://github.com/JuliaLang/IJulia.jl)によるJupyter Notebookでまとめた. -->
-
----
-
-# 自己紹介
-
-名前：大野周平
-
-所属：横浜市立大学大学院
-　　　生命ナノシステム科学研究科 前期博士課程 物質システム科学専攻
-　　　量子物理化学研究室
-
-研究：Born-Oppenheimer近似を用いない第一原理計算手法の開発を行っている.
-　　　→ 同位体置換化合物, 陽電子やミューオンを含むエキゾチック分子に応用
-
-GitHub：https://github.com/ohno/
-
----
-
-# 何しに来たの？
-
-Langevin方程式の数値計算はけっこう難しい！
-
-細胞凝集現象のモデルとして, 相互作用のあるBrown運動のシミュレーションをやった.
-文科省主催の学部生の自主研究コンテスト[サイエンス・インカレ](https://www.titech.ac.jp/enrolled/news/pdf/%E3%80%8C%E7%AC%AC10%E5%9B%9E%E3%82%B5%E3%82%A4%E3%82%A8%E3%83%B3%E3%82%B9%E3%83%BB%E3%82%A4%E3%83%B3%E3%82%AB%E3%83%AC%E3%80%8D%E9%96%8B%E5%82%AC%E3%81%AE%E3%81%94%E6%A1%88%E5%86%85.pdf)のファイナリストに選ばれるなど健闘したが, 別の分野に進んでしまった… コードがもったいない！
-
-- せっかく作ったので, コードを使ってくれる人を見つけたい！
-- 実験できる人と共同研究したい！
-- [北原和夫『非平衡系の統計力学』(岩波書店, 1997)](https://www.iwanami.co.jp/book/b258377.html) 以外の文献を知りたい！
-- つよい人のアドバイスが欲しい！
-- Julia仲間を増やしたい！
-- [GitHub](https://github.com/ohno/)フォローしてね！[GitHub](https://github.com/ohno/butsudoi2021)にスター付けてね！
-- 量子化学・放射化学・原子分子物理学・原子核物理学に詳しい友達が欲しい！
 
 ---
 
@@ -79,7 +48,7 @@ Langevin方程式の数値計算はけっこう難しい！
 
 |年|エピソード|
 |:---:|:---|
-|2014|[第4回世界トップレベル研究拠点プログラム(WPI)合同シンポジウム](http://wpi2014.ipmu.jp/)にて, <br>どこかのおじいさん(たぶんすごい研究者)から「最近はJuliaという速い言語があるらしい」と聞いていた.（[開発スタート2009年, 初回リリース2012年](https://julialang.org/blog/2012/02/why-we-created-julia/)）|
+|2014|[第4回世界トップレベル研究拠点プログラム(WPI)合同シンポジウム](http://wpi2014.ipmu.jp/)にて, どこかの<br>おじいさん（たぶんすごい研究者）から「最近はJuliaという速い言語があるらしい」<br>と聞いていた.（[開発スタート2009年, 初回リリース2012年](https://julialang.org/blog/2012/02/why-we-created-julia/)なのでホットな時期）|
 |2015～|当時はExcel VBAで数値計算をしていた. 以降, Python, Octave, R, C, JavaScriptなどをかじるが, 圧倒的な書きやすさと速さを誇るFortranに魅了される.|
 |2018|Ver.1.0リリースをきっかけに使い始める. 印象は「使いやすいFortran」.|
 |2020|Julia言語で量子モンテカルロ法のプログラムを開発. スパコン上で運用.|
@@ -136,7 +105,7 @@ img {
     position: absolute;
     right: 0;
     bottom: 0;
-    width: 640px;
+    width: 620px;
     }
 </style>
 
@@ -158,7 +127,7 @@ img {
 - 異常拡散では？<br>→ 厳密なBrown運動のMSDです
 - こんなの見たことない
 - 出典は？
-- 合ってるの？<br>→ [北原『非平衡系の統計力学』(1997)](https://www.iwanami.co.jp/book/b258377.html)<br>に書いてあります.
+- 合ってるの？<br>→ [Kitahara(1997)](https://www.iwanami.co.jp/book/b258377.html)の式(4.59)<br>　[Zwanzig(2001)](https://global.oup.com/academic/product/nonequilibrium-statistical-mechanics-9780195140187?cc=us&lang=en&#)の式(1.34)<br>　[このノート]()の3.4節を読んで！
 - 積分が難しい！<br>→ **Juliaで検証してみよう！**
 
 <style scoped>
@@ -178,15 +147,15 @@ img {
   }
   h3 {
     position: absolute;
-    top: 280px;
+    top: 200px;
     right: 80px;
     font-size: 24px;
   }
   ul {
     position: absolute;
-    top: 360px;
+    top: 280px;
     left: 840px;
-    font-size: 22px;
+    font-size: 24px;
   }
 </style>
 
@@ -403,7 +372,7 @@ $$
 > 白色雑音を数学的に厳密に取り扱うには, 確率超過程と呼ばれる概念を導入しなければならない<br>―　[兼清泰明『確率微分方程式とその応用』(森北出版, 2017)](https://www.morikita.co.jp/books/mid/007781) p.100
 
 
-Langevin方程式を扱う物理学の文脈では, 白色雑音は<strong>揺動力</strong>として導入され, その性質を出発点とした相関関数の計算によって議論が進められる. 一方, 数学では白色雑音の扱いを避けて, Wiener過程を議論の出発点に採用することが多いようである.
+Langevin方程式を扱う物理学の文脈では, 白色雑音は**揺動力**として導入され, その性質を出発点とした相関関数の計算によって議論が進められる. 一方, 数学では白色雑音の扱いを避けて, Wiener過程を議論の出発点に採用することが多いようである.
 
 このノートでも, 白色雑音の性質は不要なので使わない. また, Wiener過程についても$W(t)-W(s) \sim N(0,2D_u(t-s))$という性質を使うのみである.
 
@@ -514,18 +483,6 @@ $$
 
 ---
 
-# 揺動力の強さ$D_u$と拡散係数$D$
-
-後に説明するが, 拡散方程式($f(X(t),t)=0, g(X(t),t)=1$のIto方程式)とLangevin方程式の導く平均二乗変位$\langle|X(t)|^2\rangle$は異なるものである.  拡散係数を求める際によく目にする$\langle|X(t)|^2\rangle = 2nDt$とLangevin方程式から導かれる$\langle|\boldsymbol{X}(t)|^2\rangle = 2n\frac{D_u m}{\gamma^3} \left(\frac{\gamma}{m} t+e^{-\frac{\gamma}{m} t}-1 \right)$は, 特定の条件下でのみEinsteinの関係式
-
-$$
-    D = \frac{D_u}{\gamma^2} = \frac{k_\mathrm{B}T}{\gamma}
-$$
-
-で結ばれる. Fokker-Planck方程式の説明だけを見ると揺動力の強さ$D_u$と拡散係数$D$は一致するように見えるが, Langrvin方程式を見据えると, 揺動力の強さ$D_u$と拡散係数$D$は明確に区別することが教育的であると思われる.
-
----
-
 # Eular-Maruyama法
 
 Eular-Maruyama法は確率初期値問題
@@ -540,7 +497,7 @@ $$
     X_{i+1} \simeq X_i + f(X_i, t)\Delta t + g(X_i, t)\Delta W_i
 $$
 
-このとき, $\Delta t$は時間刻み幅で, 0.1とか0.01などを選ぶ. $\Delta W_i$は正規分布$N(0,2D_u\Delta t)$に従う疑似乱数である. Eular-Maruyama法はEular法の一般化であり, $g(X(t),t)=0$の場合はEular法と一致する. Juliaでの実装の最重要部分：
+このとき, $\Delta t$は時間刻み幅で, 0.1とか0.01などを選ぶ. $\Delta W_i$は正規分布$N(0,2D_u\Delta t)$に従う疑似乱数である. Eular-Maruyama法はEular法の一般化であり, $g(X(t),t)=0$の場合はEular法と一致する. Juliaでの実装：
 
 ```julia
 for i in 1:step
@@ -651,9 +608,9 @@ end
 
 # まとめ
 
-- Wiener過程の重要性を理解した！
-- 確率微分方程式が少しわかった！
-- Eular-Maruyama法で計算できた！
+- Wiener過程の増分$\Delta W_i$の計算法を理解した！
+- 確率微分方程式をEular-Maruyama法で計算できた！
+- Fokker-Plack方程式との対応関係を理解した！
 
 ---
 
@@ -709,7 +666,7 @@ $$
 
 > $$\langle|\boldsymbol{x}(t)|^2\rangle = \frac{6k_\mathrm{B}T}{m\gamma^2}(\gamma t+e^{-\gamma t}-1)~~~~~~~~~(4.59)$$
 
-この式(4.59)を援用するが, 出発点となる方程式が異なるので, そのままでは上記の計算の検証には使えない. 
+この式(4.59)を援用するが, 出発点となる方程式が異なるので, そのままでは検証には使えない. 
 
 ---
 
@@ -750,10 +707,9 @@ $$
 
 <style scoped>
   section{
-    padding-top: 20px;
-    padding-left: 20px;
+    padding-top: 40px;
     padding-right: 660px;
-    padding-bottom: 20px;
+    padding-bottom: 40px;
   }
   h1 {white-space: nowrap}
   ul {
@@ -809,32 +765,31 @@ $$
 
 ---
 
+# 揺動力の強さ$D_u$と拡散係数$D$
+
+後に説明するが, 拡散方程式($f(X(t),t)=0, g(X(t),t)=1$のIto方程式)とLangevin方程式の導く平均二乗変位$\langle|X(t)|^2\rangle$は異なるものである.  拡散係数を求める際によく目にする$\langle|X(t)|^2\rangle = 2nDt$とLangevin方程式から導かれる$\langle|\boldsymbol{X}(t)|^2\rangle = 2n\frac{D_u m}{\gamma^3} \left(\frac{\gamma}{m} t+e^{-\frac{\gamma}{m} t}-1 \right)$は, $t\rightarrow\infty$や$\frac{\gamma}{m}\simeq0$などの特定の条件下でのみEinsteinの関係式
+
+$$
+    D = \frac{D_u}{\gamma^2} = \frac{k_\mathrm{B}T}{\gamma}
+$$
+
+で結ばれる. Fokker-Planck方程式の説明だけを見ると揺動力の強さ$D_u$と拡散係数$D$は一致するように見えるが, Langrvin方程式を見据えると, 揺動力の強さ$D_u$と拡散係数$D$は明確に区別することが教育的であると思われる.
+
+---
+
+
 # まとめ
 
-- Langevin方程式のMSDは正しかった！
-- Langevin方程式の数値計算は落とし穴が多かった！
-- 拡散係数を過小評価することが自然だとわかった！
+- Langevin方程式のMSDを数値的に検証できた！
+- Langevin方程式の数値計算には落とし穴が多かった！
+- MD計算では拡散係数を過小評価することが自然だとわかった！
 
 ---
 
 <!-- _class: subtitle -->
 # 最後に
 
-慣性を考慮したBrown運動のシミュレーションはあまり多くないと思われる. 相互作用のあるBrown運動の計算や, 何らかの場の中でのBrown運動の計算には新規性があるテーマが多少はあると思われるので, ぜひ興味のある読者(特に実験ができる方)は一緒に取り組みたい. 専門が量子物理・化学であり, 実験が出来ないため断念したが, そういったノイズの関わる数理モデルの構築に興味があればぜひ共同研究をしたい.
-
----
-
-# 拡散モンテカルロ法(DMC)について
-
-量子モンテカルロ法(QMC)の一種. 第一原理電子状態計算の中でもかなり厳密な結果を与える手法. 変分原理に従う方法とは異なり, 虚時間Schrödinger方程式を解いている. 虚時間発展をSuzuki-Trotter展開を利用して計算している. 水素分子（2電子系）の場合, 6次元のWiener過程にサンプルの分裂・消滅の過程を加えた計算を行っている.
-
-http://mike1336.web.fc2.com/JS001_100/JS091_100/JS096_H2MoleculeDMC3Dv1c.html
-
-なお, 3電子以上の系では負符号問題が生じるため, Hartree-Fock法などで求めた試行波動関数を用いた固定ノード(Fixed-Node)近似に基づくFN-DMCが主流である. ベンチマークテスト
-
-https://doi.org/10.1021/ct3003404
-
-等では, ほぼ化学的精度(±1 kcal/mol)で実験値と比較できることが分かっている.
+慣性を含んだBrown運動のシミュレーション（2階微分方程式としてのLangevin方程式の計算）はあまり多くないと思われる. これに加えて, 相互作用のあるBrown運動の計算や, 場の中でのBrown運動の計算には新規性のあるテーマがあると思われるので, そういったBrown運動の計算やノイズの関わる数理モデルの構築に興味があればぜひ共同研究をしたい.
 
 ---
 
@@ -863,16 +818,19 @@ https://doi.org/10.1021/ct3003404
 - [太田隆夫『非平衡系の物理学』(裳華房, 2000)](https://www.shokabo.co.jp/mybooks/ISBN978-4-7853-2092-8.htm) p.67 <br> ランダムウォークモデルの連続極限として拡散方程式を導出している. 拡散方程式を経由して, Wiener過程とランダムウォークの対応関係を考えるときに参考になる.
 - [石村直之『確率微分方程式入門―数理ファイナンスへの応用― 』(共立出版, 2014)](https://www.kyoritsu-pub.co.jp/bookdetail/9784320110670) pp.6,74,75 <br> 確率過程や確率微分方程式の定義を参考にした.
 - [大平徹『確率論 講義ノート 場合の数から確率微分方程式まで』(森北出版, 2017)](https://www.morikita.co.jp/books/mid/007771) pp.118,160,165,166,167 <br> 確率過程の定義を参考にした. Ornstein–Uhlenbeck過程の解が載っている.
-- [兼清泰明『確率微分方程式とその応用』(森北出版, 2017)](https://www.morikita.co.jp/books/mid/007781) p.1,100,102 <br> 白色雑音を取り巻く数学的な困難さについて述べられている. Ito-Taylor展開を用いた近似スキームの導出はこちらを参考にされたい.
+- [エドワード・ネルソン著, 井口和基訳『ブラウン運動の動力学理論』(太陽書房, 2016)](https://www.taiyo-g.com/shousai169.html) p.58 <br> Ornstein–Uhlenbeck過程の解が載っている.
 
 ---
 
+- [兼清泰明『確率微分方程式とその応用』(森北出版, 2017)](https://www.morikita.co.jp/books/mid/007781) p.1,100,102 <br> 白色雑音を取り巻く数学的な困難さについて述べられている. Ito-Taylor展開を用いた近似スキームの導出はこちらを参考にされたい.
 - [B.エクセンダール著, 谷口説男訳『確率微分方程式 入門から応用まで』(丸善出版, 2012)](https://www.maruzen-publishing.co.jp/item/b294235.html) <br> 厳密だが入門的内容を説明しているので, まずはこの教科書を参照するとよい.
 - [L.カラザス, S.E.シュレーブ著, 渡邉壽夫訳『ブラウン運動と確率積分』(丸善出版, 2012)](https://www.maruzen-publishing.co.jp/item/?book_no=294581) <br> Brown運動の説明の誤りの例として紹介したが, 数学に関してはかなり厳密な教科書である.
 - [堀淳一『ランジュバン方程式』(岩波書店, 2015)](https://www.iwanami.co.jp/book/b266718.html) pp.4, 53, 54, 61, 80 <br> 数学的にも厳密であり, かつ物理への応用例が非常に充実している. 白色雑音についての困難さについても述べられており, Ito積分やItoのLangevin方程式についての説明がある. Ito方程式の定義はこれを参考にした.
-- [三井斌友, 小藤俊幸, 斉藤善弘『微分方程式による計算科学入門』(共立出版, 2004)](https://www.kyoritsu-pub.co.jp/bookdetail/9784320017535) pp.139, 150<br> SDEの数値計算について解説している希少な和書である. Eular-Maruyama法の表記はこれを参考にした.
 
 ---
+
+- [三井斌友, 小藤俊幸, 斉藤善弘『微分方程式による計算科学入門』(共立出版, 2004)](https://www.kyoritsu-pub.co.jp/bookdetail/9784320017535) pp.139, 150<br> SDEの数値計算について解説している希少な和書である. Eular-Maruyama法の表記はこれを参考にした.
+
 
 # 参考文献：第３部
 
